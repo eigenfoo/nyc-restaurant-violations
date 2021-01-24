@@ -1,4 +1,4 @@
-# Dashboard — New York City Restaurant Violation Citations
+# Data Dashboard — New York City Restaurant Violation Citations
 
 > View dashboard here: https://share.streamlit.io/eigenfoo/nyc-restaurant-violations/main/app.py
 
@@ -8,8 +8,6 @@ New York City Department of Health and Mental Hygeine (NYC DOHMH).
 
 Built by [George Ho](https://eigenfoo.xyz/) using
 [Streamlit](https://www.streamlit.io/).
-
----
 
 ## Overview
 
