@@ -20,6 +20,16 @@ boro = st.sidebar.selectbox(
     "Borough:", ["", "Manhattan", "Queens", "Brooklyn", "Staten Island", "Bronx"]
 )
 
+st.sidebar.markdown(
+    """
+    More details [on the README](https://github.com/eigenfoo/nyc-restaurant-violations/blob/main/README.md).
+
+    Source code available [on GitHub](https://github.com/eigenfoo/nyc-restaurant-violations).
+
+    Built by [George Ho](https://eigenfoo.xyz/).
+    """
+)
+
 # Get and cache data
 
 try:
@@ -51,8 +61,10 @@ else:
     filtered = df.query(query, engine="python")
     num_results = filtered["CAMIS"].nunique()
 
-    if num_results > 100:
+    if num_results > 1000:
         st.write("Welcome! Search on the sidebar to get started.")
+    elif num_results > 100:
+        st.write("That's too many results! Please narrow down your search.")
     elif num_results == 0:
         msg = """
         Restaurant not found!
@@ -61,13 +73,13 @@ else:
         reasons why your restaurant is not found:
 
         - **The restaurant is not in active status:** keep in mind that
-          thousands of restaurants start business and go out of business every
-          year; only restaurants in an active status are included in the
-          dataset.
+          thousands of restaurants start and go out of business every year in
+          New York City; only restaurants in an active status are included in
+          the dataset.
         - **Data error:** because this dataset is compiled from several large
-          administrative data systems, it contains some illogical values that
-          could be a result of data entry or transfer errors. Data may also be
-          missing.
+          New York City administrative data systems, it may contain illogical
+          values that could be a result of data entry or transfer errors. Data
+          may also be missing.
 
         For more details, check out [the dataset on the NYC Open Data
         website](https://data.cityofnewyork.us/Health/DOHMH-New-York-City-Restaurant-Inspection-Results/43nn-pn8j).
