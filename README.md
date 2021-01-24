@@ -18,4 +18,3 @@ Built by [George Ho](https://eigenfoo.xyz/) using
     York](https://ny.eater.com/2015/7/29/8780489/department-of-health-nyc-inspection)
   * [Visualizing New York City Restaurant Inspections, by SAP Analytics
     Cloud](https://saphanajourney.com/sap-analytics-cloud/resources/visualizing-new-york-city-restaurant-inspections-using-sap-analytics-cloud/)
-
