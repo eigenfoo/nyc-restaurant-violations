@@ -49,7 +49,7 @@ except urllib.error.URLError as err:
 
 query = " & ".join(
     [
-        f"{column_name}.str.contains('{field}', na=False)"
+        f'{column_name}.str.contains("{field}", na=False)'
         for column_name, field in [("DBA", name), ("BORO", boro), ("STREET", street)]
         if field
     ]
