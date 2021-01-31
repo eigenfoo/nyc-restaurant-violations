@@ -1,4 +1,7 @@
+import string
+
 import pandas as pd
+
 import streamlit as st
 
 
@@ -16,7 +19,7 @@ def normalize(s):
     """ Normalize a string. """
     if not isinstance(s, str):
         s = str(s)
-    return " ".join(s.strip().title().split())
+    return string.capwords(" ".join(s.strip().split()))
 
 
 def interpret_action(s):

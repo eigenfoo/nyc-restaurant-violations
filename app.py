@@ -3,7 +3,6 @@
 import urllib
 
 import streamlit as st
-
 import utils
 
 # Define title and sidebar
