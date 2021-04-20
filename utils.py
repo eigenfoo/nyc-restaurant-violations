@@ -62,7 +62,7 @@ def write_violations(violations):
     ):
         first_row = violations.loc[indexes].iloc[0]  # Just get the first row
         inspection_date = pd.to_datetime(first_row["INSPECTION DATE"])
-        if inspection_date.isnull():
+        if pd.isna(inspection_date):
             inspection_date = "N/A"
         else:
             inspection_date = inspection_date.strftime("%Y-%m-%d")
