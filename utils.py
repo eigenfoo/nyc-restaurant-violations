@@ -61,13 +61,19 @@ def write_violations(violations):
         violations.groupby(["INSPECTION DATE", "ACTION"]).groups.items(), reverse=True
     ):
         first_row = violations.loc[indexes].iloc[0]  # Just get the first row
-        if first_row["INSPECTION DATE"].strftime("%Y-%m-%d") == "1900-01-01":
+        inspection_date = pd.to_datetime(first_row["INSPECTION DATE"])
+        if inspection_date.isnull():
+            inspection_date = "N/A"
+        else:
+            inspection_date = inspection_date.strftime("%Y-%m-%d")
+
+        if inspection_date == "1900-01-01":
             st.write("We've applied for a permit, but haven't been inspected yet.")
             return
 
         interpreted_action = interpret_action(first_row["ACTION"])
         st.write(
-            f"On {first_row['INSPECTION DATE'].strftime('%Y-%m-%d')}, {interpreted_action}"
+            f"On {inspection_date}, {interpreted_action}"
         )
         if "cited" in interpreted_action:
             # If there is a list of citations, write them. Critical citations first.
