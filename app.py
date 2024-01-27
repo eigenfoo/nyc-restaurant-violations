@@ -5,9 +5,8 @@ import urllib
 import streamlit as st
 import utils
 
-# Define title and sidebar
-
-st.title("NYC Restaurant Violations")
+# Define header
+st.header('NYC Restaurant Violations')
 
 name = st.sidebar.text_input("Restaurant Name:", "")
 name = name.strip().upper()
@@ -18,6 +17,10 @@ street = street.strip().upper()
 boro = st.sidebar.selectbox(
     "Borough:", ["", "Manhattan", "Queens", "Brooklyn", "Staten Island", "Bronx"]
 )
+
+# Define subheader
+if boro:
+    st.subheader(boro)
 
 st.sidebar.markdown(
     """
