@@ -5,7 +5,7 @@ import pandas as pd
 import streamlit as st
 
 
-@st.cache(persist=True)
+@st.cache_data(persist=True)
 def get_restaurant_violation_data():
     """ Read CSV from NYC Open Data website. """
     CSV_URL = (
