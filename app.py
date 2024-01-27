@@ -101,11 +101,25 @@ else:
             )
             for _, row in choices.iterrows()
         ]
+
+        # Pagination with buttons
+        display_limit = 15
+        num_pages = (len(choices) + display_limit - 1) // display_limit
+
+        # Display page selector before radio button list
+        page = st.number_input("Select Page", 1, num_pages, 1)
+
+        # Calculate the range of choices to display for the selected page
+        start_index = (page - 1) * display_limit
+        end_index = min(start_index + display_limit, len(choices))
+        display_choices = choices[start_index:end_index]
+
+        # Display the choices
         selected_str = st.radio(
             "You're probably looking for one of these restaurants, right?",
-            [s for _, s in choices],
+            [s for _, s in display_choices],
         )
-        selected_camis = [camis for camis, s in choices if s == selected_str]
+        selected_camis = [camis for camis, s in display_choices if s == selected_str]
         filtered = df.query(f"CAMIS == {selected_camis}")
         st.write("---")
         utils.write_violations(filtered)
