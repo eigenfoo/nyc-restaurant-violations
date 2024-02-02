@@ -5,7 +5,7 @@ import pandas as pd
 import streamlit as st
 
 
-@st.cache(persist=True)
+@st.cache_data(persist=True)
 def get_restaurant_violation_data():
     """ Read CSV from NYC Open Data website. """
     CSV_URL = (
@@ -48,10 +48,13 @@ def summarize_violation_description(s):
 
 def write_violations(violations):
     first_row = violations.iloc[0]  # Just get the first row
-    st.header(
-        normalize(
-            f"{first_row['DBA']} ({first_row['BUILDING']} {first_row['STREET']}, {first_row['BORO']})"
-        )
+
+    # Display restaurant DBA as header
+    st.header(normalize(first_row['DBA']))
+
+    # Display building, street, and boro as a subheader on a new line
+    st.subheader(
+        f"{normalize(first_row['BUILDING'])} {normalize(first_row['STREET'])}, {normalize(first_row['BORO'])}"
     )
 
     violations.loc[:, "INSPECTION DATE"] = pd.to_datetime(
